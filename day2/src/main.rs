@@ -15,6 +15,6 @@ fn main() {
 
     println!("loki={}", loki);
 
-    // loops
+    // Loops for while etc
 
 }
