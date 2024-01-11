@@ -9,9 +9,12 @@ fn main() {
         println!("false");
     }
 
-    //conditioanl assignment
+    // conditioanl assignment
 
     let mut loki = if (x != 10) {100} else {-100};
 
     println!("loki={}", loki);
+
+    // loops
+
 }

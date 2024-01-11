@@ -1,1 +1,1 @@
-D:\work_dsi\RUST\day2\target\debug\day2.exe: D:\work_dsi\RUST\day2\src\main.rs
+D:\work_dsi\RUST\Rust\day2\target\debug\day2.exe: D:\work_dsi\RUST\Rust\day2\src\main.rs
