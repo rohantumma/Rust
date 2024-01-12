@@ -1,6 +1,11 @@
 fn main() {
     println!("Hello, world!");
+    // strings_here();
+    owner_ship();
+}
 
+fn loops_here(){
+    
     let x = 10;
     if x  == 10 {
         println!("true");
@@ -32,7 +37,28 @@ fn main() {
     for pat in ARR {
         println!("{}", pat);
     }
+}
 
 
+fn strings_here(){
+    // strings and heap storage
 
+    let mut myworld = String::from("Loki");
+    println!("{}",myworld);
+
+    myworld.push_str(" is pandas");
+
+    println!("{}", myworld);
+
+}
+
+fn owner_ship (){
+    //owner ships
+
+    let owner = String::from("I am here");
+    let owner1 = owner;
+    // deep copy
+    let owner2 = owner1.clone();
+
+    println!("1st{} 2nd{}",owner1,owner2 );
 }
