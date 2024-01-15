@@ -10,7 +10,11 @@ fn main() {
     // fileRead();
     // fileWrite();
     // structs_here();
-    gneric_struct();
+    // gneric_struct();
+    // treats_here();
+    // multiTreats();
+    // get_display_call();
+    match_here();
 }
 
 fn loops_here(){
@@ -47,7 +51,6 @@ fn loops_here(){
         println!("{}", pat);
     }
 }
-
 
 fn strings_here(){
     // strings and heap storage
@@ -219,7 +222,6 @@ fn structs_here() {
     println!("change cost of {} to {}",vehical2.name(),vehical2.cost());
 }
 
-
 #[derive(Debug)]
 struct shape<GenericDataType1,GenericDataType2 > {
     width: GenericDataType1,
@@ -242,4 +244,75 @@ fn gneric_struct() {
 
     println!("{:?}",rectangle);
     println!("{:?}",square);
+}
+//////////////////////////////////////////////////
+#[derive(PartialEq, PartialOrd)]
+struct minnion{
+    name:String,
+    nature:String,
+    no_of_eyes:i32
+}
+
+trait Description {
+    fn describe(&self) -> String;
+}
+
+impl Description for minnion {
+    fn describe(&self) -> String {
+        format!("Minnion name is: {} \nNature of him: {} \nLooks with {} eys always",self.name,self.nature,self.no_of_eyes)
+    }
+}
+
+impl minnion {
+    pub fn new(name: String, nature: String, no_of_eyes: i32) -> Self {
+        Self { name, nature, no_of_eyes }
+    }
+}
+
+fn treats_here(){
+    //ingeneral interface but little differance
+    let minion1 = minnion::new("Bob".to_string(),"Kind".to_string(),2);
+    println!("{}",minion1.describe());
+    let minion2 = minnion::new("Stuart".to_string(),"Egoiesh".to_string(),1);
+    println!("here are are with {}", minion1 > minion2)
+}
+/////////////////////////////////////////////////
+
+use std::fmt;
+
+fn compare_print<T, U>(x: T, i: U)
+    where
+        T: fmt::Display + PartialEq + From<U>,
+        U: fmt::Display + PartialEq + Copy,
+    {
+    if x == T::from(i) {
+        println!("{} == {}", x, i);
+    } else {
+        println!("{} != {}", x, i)
+    }
+}
+
+fn multiTreats() {
+    compare_print(1.0, 1);
+    compare_print(1.1, 1);
+}
+
+fn get_display()-> impl  fmt::Display{
+    13
+}
+
+fn get_display_call() {
+    println!("{}",get_display());
+}
+
+fn match_here(){
+    println!("0={}",do_match(0))
+}
+
+fn do_match(num:i32) -> &'static str {
+    let reslut = match num  {
+        0 => "zero",
+        _ => "Max"// '_' default case // allwas at end
+    };
+    reslut
 }
