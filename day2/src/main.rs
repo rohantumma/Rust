@@ -1,3 +1,7 @@
+extern crate core;
+
+use core::slice;
+use std::collections::HashMap;
 use std::fs;
 
 fn main() {
@@ -14,7 +18,9 @@ fn main() {
     // treats_here();
     // multiTreats();
     // get_display_call();
-    match_here();
+    //  match_here();
+    // errors_here();
+    vector_here();
 }
 
 fn loops_here(){
@@ -234,7 +240,6 @@ impl<GenericDataType1, GenericDataType2> shape<GenericDataType1, GenericDataType
     }
 }
 
-
 fn gneric_struct() {
     // both width and height of same type
     let rectangle = shape::new(30,40);
@@ -279,6 +284,7 @@ fn treats_here(){
 /////////////////////////////////////////////////
 
 use std::fmt;
+use std::fs::read_to_string;
 
 fn compare_print<T, U>(x: T, i: U)
     where
@@ -315,4 +321,57 @@ fn do_match(num:i32) -> &'static str {
         _ => "Max"// '_' default case // allwas at end
     };
     reslut
+}
+
+use std::io;
+use std::io::ErrorKind;
+use rand::distributions::uniform::SampleBorrow;
+
+fn errors_here(){
+    // recover and un recover error -> file not found and index out of error
+    // rust do ahve exception
+    // result for recover errors
+    // panic! for unrevoverable errors with exit code 101
+    // panic!("error is here look now");
+
+    // result<T,E>
+
+    let fileOpen = read_to_string("NOFILE.txt");
+
+    let FileContent = match fileOpen {
+        Ok(message) => {println!("Got File");}
+        Err(error) => match error.kind(){
+            io::ErrorKind::NotFound =>{
+                println!("File not found, try again");
+            }
+            _ => {panic!("Other error OWWWWW");}
+        }
+    };
+
+}
+
+fn vector_here(){
+    // vector danamic in size // store in heap
+    let mut vecHere:Vec<String> = Vec::new();
+    vecHere.push("Loki".to_string());
+    vecHere.push("Loki1".to_string());
+    vecHere.push("Loki2".to_string());
+    vecHere.push("Loki3".to_string());
+    vecHere.push("Loki4".to_string());
+
+    println!("{:?}",vecHere);
+    println!("vec at index 2 is {:?}",vecHere.get(3));
+    hash_map_here();
+}
+
+fn hash_map_here(){
+    // key has to same dataType for all
+    // vale has to same dataType for all
+
+    let mut hash_here = HashMap::new();
+    hash_here.insert(1,"loki");
+    hash_here.insert(1,"pandas");
+    hash_here.insert(2,"Oden");
+    println!("{:?}",hash_here);
+    println!("{:?}",hash_here.get(&2));
 }
